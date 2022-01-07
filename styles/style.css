@@ -45,16 +45,21 @@ body {
 /* prompt 3 style */
 
 .form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100%;
+  padding: 4rem;
 }
 
 .form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   height: 100%;
   gap: 2rem;
+  padding: 2rem 2rem 1rem;
+  border: 1px solid black;
 }
 
 .form button {
