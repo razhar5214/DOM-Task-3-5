@@ -1,0 +1,22 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.user-controls {
+  background-color: yellow;
+}
+
+.user-controls ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  gap: 20px;
+}
+
+#grid-container {
+  display: grid;
+  grid-auto-rows: 100px;
+  grid-auto-columns: 100px;
+}
