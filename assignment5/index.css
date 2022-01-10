@@ -20,3 +20,7 @@
   grid-auto-rows: 100px;
   grid-auto-columns: 100px;
 }
+
+.cell {
+  border: 1px solid black;
+}

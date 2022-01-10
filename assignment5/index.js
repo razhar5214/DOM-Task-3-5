@@ -9,12 +9,17 @@ addRowBtn.addEventListener("click", addRowOnClick);
 const addColBtn = document.getElementById("add-col-btn");
 addColBtn.addEventListener("click", addColOnClick);
 
-let rowStart = 2;
-let colStart = 2;
+let rowStart = 1;
+let colStart = 1;
 
 // method to add row to grid
 function addRowOnClick() {
-  const newDiv = createGridCell("new column", rowStart, 1);
+  if (colStart === 1) {
+    rowStart = 1;
+    colStart++;
+  }
+
+  const newDiv = createGridCell("new row", rowStart, 1);
   gridContainer.appendChild(newDiv);
 
   fillRow();
@@ -23,6 +28,11 @@ function addRowOnClick() {
 
 // method to add column to grid
 function addColOnClick() {
+  if (rowStart === 1) {
+    colStart = 1;
+    rowStart++;
+  }
+
   const newDiv = createGridCell("new column", 1, colStart);
   gridContainer.appendChild(newDiv);
 
@@ -37,7 +47,7 @@ function deleteColOnClick(event) {}
 // helper function fills rest of cells new when row created
 function fillRow() {
   for (let i = 2; i < colStart; i++) {
-    const newDiv = createGridCell("new row", rowStart, i);
+    const newDiv = createGridCell("new", rowStart, i);
     gridContainer.appendChild(newDiv);
   }
 }
@@ -45,7 +55,7 @@ function fillRow() {
 // helper function fills rest of cells when new column created
 function fillCol() {
   for (let i = 2; i < rowStart; i++) {
-    const newDiv = createGridCell("new column", i, colStart);
+    const newDiv = createGridCell("new", i, colStart);
     gridContainer.appendChild(newDiv);
   }
 }
@@ -53,8 +63,9 @@ function fillCol() {
 // helper function to create one cell
 function createGridCell(text, row, column) {
   const newDiv = document.createElement("div");
-  newDiv.textContent = "new column";
+  newDiv.textContent = text;
   newDiv.style.gridColumn = column;
   newDiv.style.gridRow = row;
+  newDiv.className = "cell";
   return newDiv;
 }
