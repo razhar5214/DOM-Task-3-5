@@ -1,6 +1,9 @@
-let form = document.querySelector('form');
-form.addEventListener('submit', (check) => {
-	console.log(check);
-	if (document.getElementById('password').value != 123456789) alert(`Incorrect password`);
-	else document.querySelector('h1').innerText = 'Correct!';
-});
+function checkPassword(){
+	event.preventDefault();
+	let password = document.getElementById('password').value;
+	if(password != "12345678"){
+		alert("Incorrect password");
+	}else{
+		document.getElementById("status").textContent = "Correct!";
+	}
+}

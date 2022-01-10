@@ -7,7 +7,7 @@
   </head>
 
   <body>
-    <script src = "prompt3.js"></script>
+    <h1 id="status" style="text-align: center;">Status</h1>
     <div class="form-container">
       <form class="form">
         <label>
@@ -20,11 +20,12 @@
         </label>
         <label>
           Password:
-          <input type="password" placeholder="password" />
+          <input type="password" placeholder="password" id="password" />
         </label>
 
-        <button>Submit</button>
+        <button onclick="checkPassword()" type="submit" value="Submit">Submit</button>
       </form>
     </div>
+    <script src="../scripts/prompt3.js"> </script>
   </body>
 </html>
