@@ -21,9 +21,11 @@ fillAllBtn.addEventListener("click", ()=>{fillAll(colorVal)});
 const unfillAllBtn = document.getElementById("unfill-all-btn");
 unfillAllBtn.addEventListener("click", ()=>{fillAll("white")});
 
+const fillUnColBtn = document.getElementById("fill-uncol-btn");
+fillUnColBtn.addEventListener("click", fillUncolored);
+
 let rowStart = 1;
 let colStart = 1;
-
 
 // =================================================================== //
 
@@ -111,12 +113,19 @@ function createGridCell(text, row, column) {
   })
 
   function fillAll(color){
-
     let listOfCells = document.getElementsByClassName("cell")
     for(let i=0; i<listOfCells.length; i++) {
       listOfCells[i].style.backgroundColor = color;
     }
-
   }
+  function fillUncolored(){
+    let listOfCells = document.getElementsByClassName("cell")
+    for(let i=0; i<listOfCells.length; i++) {
+      if(listOfCells[i].style.getPropertyValue("backgroundColor") == "rgb(0, 0, 0)"){
+        listOfCells[i].style.backgroundColor = colorVal;
+      }
+    }
+  }
+
   
 
