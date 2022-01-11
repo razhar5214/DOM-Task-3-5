@@ -16,6 +16,7 @@ function Prompt1() {
   })
 }
 */
+
 function buttonOne(){
 
   document.getElementById("textButton").textContent = "I'm right!";
