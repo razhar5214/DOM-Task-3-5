@@ -16,7 +16,10 @@ const deleteColBtn = document.getElementById("dlt-col-btn");
 deleteColBtn.addEventListener("click", deleteColOnClick);
 
 const fillAllBtn = document.getElementById("fill-all-btn");
-fillAllBtn.addEventListener("click", fillAll);
+fillAllBtn.addEventListener("click", ()=>{fillAll(colorVal)});
+
+const unfillAllBtn = document.getElementById("unfill-all-btn");
+unfillAllBtn.addEventListener("click", ()=>{fillAll("white")});
 
 let rowStart = 1;
 let colStart = 1;
@@ -107,13 +110,12 @@ function createGridCell(text, row, column) {
     console.log(colorVal)
   })
 
-  function fillAll(){
+  function fillAll(color){
 
     let listOfCells = document.getElementsByClassName("cell")
     for(let i=0; i<listOfCells.length; i++) {
-      listOfCells[i].style.backgroundColor = colorVal;
+      listOfCells[i].style.backgroundColor = color;
     }
-    
 
   }
   
