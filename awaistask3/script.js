@@ -16,10 +16,12 @@ function initialize(){
 	document.getElementById("container").innerHTML = "Hello!";
 
 	//6) Add the class main to the div with a class of footer.
-	document.querySelectorAll("div.footer").classList.add("main");
+	//document.querySelectorAll("div.footer").classList.add("main");
+	document.querySelector(".footer").className += " main";
 
 	//7) Remove the class main on the div with a class of footer.
-	document.getElementsByClassName("footer").classList.remove("main");
+	//document.getElementsByClassName("footer").classList.remove("main");
+	document.querySelector(".footer").className = "footer";
 
 	//8) Create a new li element.
 	let newLI = document.createElement("li")
@@ -38,7 +40,7 @@ function initialize(){
 	}
 	
 	//13) Remove the div with a class of footer.
-	document.querySelectorAll("div.footer").remove();
+	document.querySelector(".footer").remove();
 
-	// #6,7,13 are not working
+	
 }
