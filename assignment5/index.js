@@ -12,6 +12,9 @@ addColBtn.addEventListener("click", addColOnClick);
 let rowStart = 1;
 let colStart = 1;
 
+
+// =================================================================== //
+
 // method to add row to grid
 function addRowOnClick() {
   if (colStart === 1) {
@@ -44,7 +47,10 @@ function deleteRowOnClick(event) {}
 
 function deleteColOnClick(event) {}
 
-// helper function fills rest of cells new when row created
+
+// ===================================================================== //
+
+// helper function - fills rest of cells new when row created
 function fillRow() {
   for (let i = 2; i < colStart; i++) {
     const newDiv = createGridCell("new", rowStart, i);
@@ -52,7 +58,7 @@ function fillRow() {
   }
 }
 
-// helper function fills rest of cells when new column created
+// helper function - fills rest of cells when new column created
 function fillCol() {
   for (let i = 2; i < rowStart; i++) {
     const newDiv = createGridCell("new", i, colStart);
@@ -60,7 +66,7 @@ function fillCol() {
   }
 }
 
-// helper function to create one cell
+// helper function - create one cell and add to grid
 function createGridCell(text, row, column) {
   const newDiv = document.createElement("div");
   newDiv.textContent = text;

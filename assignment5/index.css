@@ -22,5 +22,10 @@
 }
 
 .cell {
+  background-color: white;
   border: 1px solid black;
+}
+
+.cell:hover {
+  transform: scale(1.1, 1.1);
 }
