@@ -127,5 +127,5 @@ function createGridCell(text, row, column) {
     }
   }
 
-  
+
 
