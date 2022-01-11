@@ -69,6 +69,9 @@ function fillCol() {
 // helper function - create one cell and add to grid
 function createGridCell(text, row, column) {
   const newDiv = document.createElement("div");
+  newDiv.addEventListener('click', ()=> {
+    newDiv.style.backgroundColor = colorVal
+  })
   newDiv.textContent = text;
   newDiv.style.gridColumn = column;
   newDiv.style.gridRow = row;
