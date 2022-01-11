@@ -26,6 +26,9 @@ deleteRowBtn.addEventListener("click", deleteRowOnClick);
 const deleteColBtn = document.getElementById("dlt-col-btn");
 deleteColBtn.addEventListener("click", deleteColOnClick);
 
+const fillUnColBtn = document.getElementById("fill-uncol-btn");
+fillUnColBtn.addEventListener("click", fillUncoloredCells);
+
 const fillAllBtn = document.getElementById("fill-all-btn");
 fillAllBtn.addEventListener("click", () => {
   fillAllCells(colorVal);
@@ -33,11 +36,9 @@ fillAllBtn.addEventListener("click", () => {
 
 const unfillAllBtn = document.getElementById("unfill-all-btn");
 unfillAllBtn.addEventListener("click", () => {
-  fillAllCells("white");
+  fillAllCells(""); // make background-color blank
 });
 
-const fillUnColBtn = document.getElementById("fill-uncol-btn");
-fillUnColBtn.addEventListener("click", fillUncoloredCells);
 
 let rowStart = 1;
 let colStart = 1;
@@ -52,9 +53,6 @@ function addRowOnClick() {
     colStart++;
   }
 
-  const newDiv = createGridCell("new row", rowStart, 1);
-  gridContainer.appendChild(newDiv);
-
   fillRow();
   rowStart++;
 }
@@ -66,25 +64,20 @@ function addColOnClick() {
     rowStart++;
   }
 
-  const newDiv = createGridCell("new column", 1, colStart);
-  gridContainer.appendChild(newDiv);
-
   fillCol();
   colStart++;
 }
 
 function deleteRowOnClick(event) {
-  if (colStart === 1) {
-    alert("ERROR!");
-  }
-  //removeGridCell("delete row", rowStart, 1);
-  rowStart--;
+  // get the last row that was added
+  const rowToDelete = document.getElementsByClassName(`row-${--rowStart}`);
+  removeElements(rowToDelete);
 }
 
-function deleteColOnClick(event) {
-  if (rowStart === 1) {
-    alert("ERROR!");
-  }
+function deleteColOnClick() {
+  // get the last column that was added
+  const columnToDelete = document.getElementsByClassName(`col-${--colStart}`);
+  removeElements(columnToDelete);
 }
 
 function fillAllCells(color) {
@@ -106,16 +99,18 @@ function fillUncoloredCells() {
 
 // helper function - fills rest of cells new when row created
 function fillRow() {
-  for (let i = 2; i < colStart; i++) {
-    const newDiv = createGridCell("new", rowStart, i);
+  for (let i = 1; i < colStart; i++) {
+    const newDiv = createGridCell("new row", rowStart, i);
+    newDiv.className += ` col-${i} row-${rowStart}`; // location of cell in grid
     gridContainer.appendChild(newDiv);
   }
 }
 
 // helper function - fills rest of cells when new column created
 function fillCol() {
-  for (let i = 2; i < rowStart; i++) {
-    const newDiv = createGridCell("new", i, colStart);
+  for (let i = 1; i < rowStart; i++) {
+    const newDiv = createGridCell("new column", i, colStart);
+    newDiv.className += ` col-${colStart} row-${i}`; // location of cell in grid
     gridContainer.appendChild(newDiv);
   }
 }
@@ -123,12 +118,26 @@ function fillCol() {
 // helper function - create one cell and add to grid
 function createGridCell(text, row, column) {
   const newDiv = document.createElement("div");
-  newDiv.addEventListener("click", () => {
+
+  // change color of cell when clicked
+  // newDiv.addEventListener("click", () => {
+  //   newDiv.style.backgroundColor = colorVal;
+  // });
+
+  newDiv.addEventListener("mouseup", () => {
     newDiv.style.backgroundColor = colorVal;
   });
+
   newDiv.textContent = text;
   newDiv.style.gridColumn = column;
   newDiv.style.gridRow = row;
   newDiv.className = "cell";
   return newDiv;
+}
+
+function removeElements(elementList) {
+  // loop backwards to avoid bugs when removing elements from list
+  for (let i = elementList.length - 1; i >= 0; i--) {
+    elementList[i].remove();
+  }
 }
