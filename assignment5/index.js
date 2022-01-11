@@ -77,8 +77,12 @@ function createGridCell(text, row, column) {
 }
 
 // color picker
-function colorPicker(){
-  const color = document.getElementById('colorpicker').value
-  console.log(color)
-}
-colorPicker()
+  const color = document.getElementById('colorpicker')
+  let colorVal = color.value
+
+  color.addEventListener('input', ()=>{
+    colorVal = color.value
+    console.log(colorVal)
+  })
+  
+
