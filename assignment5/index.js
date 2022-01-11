@@ -1,11 +1,22 @@
 // get the grid element
 const gridContainer = document.getElementById("grid-container");
 
-// get the button element
+// get all grid cells
+const listOfCells = document.getElementsByClassName("cell");
+
+// get the color picker
+const colorPicker = document.getElementById("colorpicker");
+let colorVal = colorPicker.value;
+
+// get the color selected by user
+colorPicker.addEventListener("input", () => {
+  colorVal = colorPicker.value;
+});
+
+/* user button controls */
 const addRowBtn = document.getElementById("add-row-btn");
 addRowBtn.addEventListener("click", addRowOnClick);
 
-// get the button element
 const addColBtn = document.getElementById("add-col-btn");
 addColBtn.addEventListener("click", addColOnClick);
 
@@ -16,16 +27,23 @@ const deleteColBtn = document.getElementById("dlt-col-btn");
 deleteColBtn.addEventListener("click", deleteColOnClick);
 
 const fillAllBtn = document.getElementById("fill-all-btn");
-fillAllBtn.addEventListener("click", ()=>{fillAll(colorVal)});
+fillAllBtn.addEventListener("click", () => {
+  fillAllCells(colorVal);
+});
 
 const unfillAllBtn = document.getElementById("unfill-all-btn");
-unfillAllBtn.addEventListener("click", ()=>{fillAll("white")});
+unfillAllBtn.addEventListener("click", () => {
+  fillAllCells("white");
+});
+
+const fillUnColBtn = document.getElementById("fill-uncol-btn");
+fillUnColBtn.addEventListener("click", fillUncoloredCells);
 
 let rowStart = 1;
 let colStart = 1;
 
-
 // =================================================================== //
+/* methods to modify grid */
 
 // method to add row to grid
 function addRowOnClick() {
@@ -56,7 +74,7 @@ function addColOnClick() {
 }
 
 function deleteRowOnClick(event) {
-  if(colStart === 1){
+  if (colStart === 1) {
     alert("ERROR!");
   }
   //removeGridCell("delete row", rowStart, 1);
@@ -64,11 +82,25 @@ function deleteRowOnClick(event) {
 }
 
 function deleteColOnClick(event) {
-  if(rowStart === 1){
+  if (rowStart === 1) {
     alert("ERROR!");
   }
 }
 
+function fillAllCells(color) {
+  for (let i = 0; i < listOfCells.length; i++) {
+    listOfCells[i].style.backgroundColor = color;
+  }
+}
+
+function fillUncoloredCells() {
+  for (let i = 0; i < listOfCells.length; i++) {
+    // if background color is white it will return an empty string
+    if (listOfCells[i].style.backgroundColor === "") {
+      listOfCells[i].style.backgroundColor = colorVal;
+    }
+  }
+}
 
 // ===================================================================== //
 
@@ -91,35 +123,12 @@ function fillCol() {
 // helper function - create one cell and add to grid
 function createGridCell(text, row, column) {
   const newDiv = document.createElement("div");
-
-  newDiv.addEventListener('click', ()=> {
-    newDiv.style.backgroundColor = colorVal
-  })
-
+  newDiv.addEventListener("click", () => {
+    newDiv.style.backgroundColor = colorVal;
+  });
   newDiv.textContent = text;
   newDiv.style.gridColumn = column;
   newDiv.style.gridRow = row;
   newDiv.className = "cell";
   return newDiv;
 }
-
-// color picker
-  const color = document.getElementById('colorpicker')
-  let colorVal = color.value
-
-  color.addEventListener('input', ()=>{
-    colorVal = color.value
-    console.log(colorVal)
-  })
-
-  function fillAll(color){
-
-    let listOfCells = document.getElementsByClassName("cell")
-    for(let i=0; i<listOfCells.length; i++) {
-      listOfCells[i].style.backgroundColor = color;
-    }
-
-  }
-  
-
-
