@@ -9,6 +9,15 @@ addRowBtn.addEventListener("click", addRowOnClick);
 const addColBtn = document.getElementById("add-col-btn");
 addColBtn.addEventListener("click", addColOnClick);
 
+const deleteRowBtn = document.getElementById("dlt-row-btn");
+deleteRowBtn.addEventListener("click", deleteRowOnClick);
+
+const deleteColBtn = document.getElementById("dlt-col-btn");
+deleteColBtn.addEventListener("click", deleteColOnClick);
+
+const fillAllBtn = document.getElementById("fill-all-btn");
+fillAllBtn.addEventListener("click", fillAll);
+
 let rowStart = 1;
 let colStart = 1;
 
@@ -43,9 +52,19 @@ function addColOnClick() {
   colStart++;
 }
 
-function deleteRowOnClick(event) {}
+function deleteRowOnClick(event) {
+  if(colStart === 1){
+    alert("ERROR!");
+  }
+  //removeGridCell("delete row", rowStart, 1);
+  rowStart--;
+}
 
-function deleteColOnClick(event) {}
+function deleteColOnClick(event) {
+  if(rowStart === 1){
+    alert("ERROR!");
+  }
+}
 
 
 // ===================================================================== //
@@ -89,6 +108,16 @@ function createGridCell(text, row, column) {
     colorVal = color.value
     console.log(colorVal)
   })
+
+  function fillAll(){
+
+    let listOfCells = document.getElementsByClassName("cell")
+    for(let i=0; i<listOfCells.length; i++) {
+      listOfCells[i].style.backgroundColor = colorVal;
+    }
+    
+
+  }
   
 
 
